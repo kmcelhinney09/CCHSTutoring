@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :users
+  resources :users, only:[:show, :create]
   
   get '*path',
     to: 'fallback#index',
