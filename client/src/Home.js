@@ -6,14 +6,19 @@ import Button from "react-bootstrap/esm/Button";
 import Image from "react-bootstrap/Image";
 import Modal from 'react-bootstrap/Modal'
 import SignUp from "./SignUp";
+import Login from "./Login";
 
 function Home() {
-  const [show, setShow] = useState(false);
+  const [showSignUp, setShowSignUp] = useState(false);
+  const [showLogin, setShowLogin] = useState(false);
 
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const handleCloseSignUp = () => setShowSignUp(false);
+  const handleShowSignUp = () => setShowSignUp(true);
 
-  
+  const handleCloseLogin = () => setShowLogin(false);
+  const handleShowLogin = () => setShowLogin(true);
+
+
   function splashScreen() {
     return (
       <Container fluid className="vh-100 d-flex flex-column">
@@ -31,8 +36,8 @@ function Home() {
             </Row>
             <Row>
               <Col md={{ span: 2, offset: 5 }}>
-                <Button variant="success">Login</Button>{" "}
-                <Button variant="success" onClick={handleShow}>Sign-Up</Button>
+                <Button variant="success"onClick={handleShowLogin}>Login</Button>{" "}
+                <Button variant="success" onClick={handleShowSignUp}>Sign-Up</Button>
               </Col>
             </Row>
           </Col>
@@ -44,12 +49,21 @@ function Home() {
   return (
     <>
       {splashScreen()}
-      <Modal show={show} onHide={handleClose}>
+      <Modal show={showSignUp} onHide={handleCloseSignUp}>
         <Modal.Header closeButton>
           <Modal.Title>Sign-Up for CCHS Tutoring</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <SignUp closeForm={handleClose}/>
+          <SignUp closeForm={handleCloseSignUp}/>
+        </Modal.Body>
+      </Modal>
+
+      <Modal show={showLogin} onHide={handleCloseLogin}>
+        <Modal.Header closeButton>
+          <Modal.Title>Login to CCHS Tutoring</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Login closeForm={handleCloseLogin}/>
         </Modal.Body>
       </Modal>
     </>
