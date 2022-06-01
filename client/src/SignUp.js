@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 
@@ -23,7 +23,6 @@ function SignUp({ closeForm }) {
       
       )
     })
-    console.log(error_text)
     return error_text;
   }
 
