@@ -1,8 +1,16 @@
 class User < ApplicationRecord
   has_secure_password
+  enum role: [:tutee, :tutor, :admin]
+
+  after_initialize do
+    if self.new_record?
+      self.role ||= :tutee
+    end
+  end
 
   validates :email, :password, :full_name, :password_confirmation, presence: true
   validates :email, uniqueness: true, on: :create
+  validates :password, length: {minimum:8}
   validates :password, confirmation: true
 
   # password validation written chowderhead taken from https://dev.to/nodefiend/rails-password-validation-29kj

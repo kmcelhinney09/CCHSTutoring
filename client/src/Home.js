@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Container from "react-bootstrap/esm/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -8,12 +8,12 @@ import Modal from 'react-bootstrap/Modal'
 import SignUp from "./SignUp";
 
 function Home() {
-  const signup = false;
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+  
   function splashScreen() {
     return (
       <Container fluid className="vh-100 d-flex flex-column">
@@ -51,14 +51,6 @@ function Home() {
         <Modal.Body>
           <SignUp closeForm={handleClose}/>
         </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Close
-          </Button>
-          <Button variant="primary" onClick={handleClose}>
-            Save Changes
-          </Button>
-        </Modal.Footer>
       </Modal>
     </>
   );

@@ -14,6 +14,6 @@ rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity
   end
 
   def user_params
-    params.permit(:email, :password, :full_name, :role)
+    params.permit(:email, :password, :password_confirmation, :full_name, :role)
   end
 end
