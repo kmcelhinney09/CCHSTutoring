@@ -4,7 +4,7 @@ import Nav from "react-bootstrap/Nav";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import Container from "react-bootstrap/Container";
 
-function Header() {
+function Header({ currentUser }) {
   return (
     <Navbar collapseOnSelect expand="lg" bg="success" variant="dark">
       <Container>
@@ -29,7 +29,7 @@ function Header() {
           <Nav>
             <Nav.Link href="#deets">More deets</Nav.Link>
             <Nav.Link eventKey={2} href="#memes">
-              Dank memes
+              {currentUser.full_name}
             </Nav.Link>
           </Nav>
         </Navbar.Collapse>

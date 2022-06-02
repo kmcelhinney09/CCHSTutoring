@@ -1,14 +1,14 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Container from "react-bootstrap/esm/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/esm/Button";
 import Image from "react-bootstrap/Image";
-import Modal from 'react-bootstrap/Modal'
+import Modal from "react-bootstrap/Modal";
 import SignUp from "./SignUp";
 import Login from "./Login";
 
-function Home() {
+function Home({ setCurrentUser }) {
   const [showSignUp, setShowSignUp] = useState(false);
   const [showLogin, setShowLogin] = useState(false);
 
@@ -17,7 +17,6 @@ function Home() {
 
   const handleCloseLogin = () => setShowLogin(false);
   const handleShowLogin = () => setShowLogin(true);
-
 
   function splashScreen() {
     return (
@@ -36,8 +35,12 @@ function Home() {
             </Row>
             <Row>
               <Col md={{ span: 2, offset: 5 }}>
-                <Button variant="success"onClick={handleShowLogin}>Login</Button>{" "}
-                <Button variant="success" onClick={handleShowSignUp}>Sign-Up</Button>
+                <Button variant="success" onClick={handleShowLogin}>
+                  Login
+                </Button>{" "}
+                <Button variant="success" onClick={handleShowSignUp}>
+                  Sign-Up
+                </Button>
               </Col>
             </Row>
           </Col>
@@ -54,7 +57,10 @@ function Home() {
           <Modal.Title>Sign-Up for CCHS Tutoring</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <SignUp closeForm={handleCloseSignUp}/>
+          <SignUp
+            closeForm={handleCloseSignUp}
+            setCurrentUser={setCurrentUser}
+          />
         </Modal.Body>
       </Modal>
 
@@ -63,7 +69,7 @@ function Home() {
           <Modal.Title>Login to CCHS Tutoring</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Login closeForm={handleCloseLogin}/>
+          <Login closeForm={handleCloseLogin} setCurrentUser={setCurrentUser} />
         </Modal.Body>
       </Modal>
     </>

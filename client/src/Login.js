@@ -2,7 +2,7 @@ import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 
-function Login({ closeForm }) {
+function Login({ closeForm, setCurrentUser }) {
   const [loginForm, setLoginForm] = useState({
     email: "",
     password: "",
@@ -11,8 +11,12 @@ function Login({ closeForm }) {
   const [errors, setErrors] = useState([]);
 
   function renderErrors() {
-    const error_text = errors.map(error => {
-      <li>{error}</li>
+    const error_text = errors.map((error,index) => {
+      return <li key={index}>{error[0]}
+            <ul>
+              <li>{error[1]}</li>
+            </ul>
+      </li>
     })
     return error_text;
   }

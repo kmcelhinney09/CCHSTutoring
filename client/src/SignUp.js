@@ -2,7 +2,7 @@ import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 
-function SignUp({ closeForm }) {
+function SignUp({ closeForm, setCurrentUser }) {
   const [signUpForm, setSignUpForm] = useState({
     email: "",
     full_name: "",
@@ -13,9 +13,9 @@ function SignUp({ closeForm }) {
   const [errors, setErrors] = useState([]);
 
   function renderErrors() {
-    const error_text = errors.map(error => {
+    const error_text = errors.map((error,index) => {
       return(
-      <li>{error[0]}
+      <li key={index}>{error[0]}
         <ul>
           {error[1].map(text => <li>{text}</li>)}
         </ul>
@@ -46,8 +46,8 @@ function SignUp({ closeForm }) {
       if (res.ok) {
         res.json().then(console.log(res));
       } else {
-        res.json().then((e) => setErrors(Object.entries(e.error)));
-        // res.json().then((e) => console.log(Object.entries(e.error)));
+        // res.json().then((e) => setErrors(Object.entries(e.error)));
+        res.json().then((e) => console.log(Object.entries(e.error)));
       }
     });
   }
