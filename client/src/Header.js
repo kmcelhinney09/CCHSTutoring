@@ -4,7 +4,17 @@ import Nav from "react-bootstrap/Nav";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import Container from "react-bootstrap/Container";
 
-function Header({ currentUser }) {
+function Header({ currentUser, setCurrentUser }) {
+
+  function handleLogout() {
+    fetch("/logout",
+      { method: "DELETE" }).then((r) => {
+        if (r.ok) {
+          setCurrentUser("");
+        }
+      });
+  }
+
   return (
     <Navbar collapseOnSelect expand="lg" bg="success" variant="dark">
       <Container>
@@ -28,9 +38,12 @@ function Header({ currentUser }) {
           </Nav>
           <Nav>
             <Nav.Link href="#deets">More deets</Nav.Link>
-            <Nav.Link eventKey={2} href="#memes">
-              {currentUser.full_name}
-            </Nav.Link>
+            {currentUser ? (
+              <>
+                <Nav.Link> {currentUser.full_name} </Nav.Link>
+                <Nav.Link onClick={handleLogout}>Logout</Nav.Link>
+              </>
+            ) : null}
           </Nav>
         </Navbar.Collapse>
       </Container>

@@ -20,14 +20,14 @@ function App() {
   if (!currentUser) return <Home setCurrentUser={setCurrentUser} />
   return (
     <BrowserRouter>
-    <Header currentUser={currentUser}/>
+    <Header currentUser={currentUser} setCurrentUser={setCurrentUser} />
       <div className="App">
         <Switch>
           <Route path="/testing">
             <h1>Test Route</h1>
           </Route>
           <Route path="/">
-            <Home />
+            <Home setCurrentUser={setCurrentUser}/>
           </Route>
         </Switch>
       </div>
