@@ -6,28 +6,33 @@ import UserPage from "./UserPage";
 import Login from "./Login";
 
 function App() {
-
-  const [currentUser, setCurrentUser] = useState('');
+  const [currentUser, setCurrentUser] = useState("");
 
   useEffect(() => {
-    fetch('/auth')
-    .then(res => {
-      if (res.ok){
-        res.json().then(user => setCurrentUser(user))
+    fetch("/auth").then((res) => {
+      if (res.ok) {
+        res.json().then((user) => setCurrentUser(user));
       }
-    })
-  },[])
-  if (!currentUser) return <Home setCurrentUser={setCurrentUser} />
+    });
+  }, []);
+  if (!currentUser) {
+    return (
+      <>
+        <Header currentUser={currentUser} setCurrentUser={setCurrentUser} />
+        <Home setCurrentUser={setCurrentUser} />
+      </>
+    );
+  }
   return (
     <BrowserRouter>
-    <Header currentUser={currentUser} setCurrentUser={setCurrentUser} />
+      <Header currentUser={currentUser} setCurrentUser={setCurrentUser} />
       <div className="App">
         <Switch>
           <Route path="/testing">
             <h1>Test Route</h1>
           </Route>
           <Route path="/">
-            <Home setCurrentUser={setCurrentUser}/>
+            <Home setCurrentUser={setCurrentUser} />
           </Route>
         </Switch>
       </div>

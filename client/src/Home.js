@@ -35,10 +35,10 @@ function Home({ setCurrentUser }) {
             </Row>
             <Row>
               <Col md={{ span: 2, offset: 5 }}>
-                <Button variant="success" onClick={handleShowLogin}>
+                <Button className="m-1" variant="success" onClick={handleShowLogin}>
                   Login
                 </Button>{" "}
-                <Button variant="success" onClick={handleShowSignUp}>
+                <Button className="m-1" variant="success" onClick={handleShowSignUp}>
                   Sign-Up
                 </Button>
               </Col>
