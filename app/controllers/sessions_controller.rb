@@ -9,4 +9,15 @@ class SessionsController < ApplicationController
       render json: {error: {login: "Invalid Email or Password"}}, status: :unauthorized
     end
   end
+
+  def destroy
+    user = User.find_by(id:session[:user_id])
+    if user
+      session.delete :user_id
+      session.delete :full_name
+      head :no_content
+    else
+      render json: {errors: ["Not Autherized"]}. status: :unauthorized
+    end
+  end
 end
